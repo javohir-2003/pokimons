@@ -3477,46 +3477,62 @@ var pokemons = [
 	},
 ];
 
-for(item of pokemons){
-var newItem = document.createElement("li")
-var newSpan = document.createElement("span")
-var newTitle = document.createElement("h2")
-var newImg = document.createElement("img")
-var newStrong = document.createElement("strong")
-var newHeight = document.createElement("p")
-var newWeight = document.createElement("p")
-
-
-newSpan.textContent = ` ${item.num}`
-newTitle.textContent = ` ${item.name}`
-newImg.src = `${item.img}`
-newStrong.textContent = ` ${item.type}`
-newHeight.textContent = `${item.height}`
-newWeight.textContent = `${item.weight}`
-
-
-
-newItem.setAttribute("class", "box")
-newSpan.setAttribute("class", "spans")
-newTitle.setAttribute("class", "titles")
-newImg.setAttribute("class", "imgs")
-newStrong.setAttribute("class", "types")
-newHeight.setAttribute("class", "heights")
-newWeight.setAttribute("class", "weights")
-
-newItem.appendChild(newSpan)
-newItem.appendChild(newTitle)
-newItem.appendChild(newImg)
-newItem.appendChild(newStrong)
-newItem.appendChild(newHeight)
-newItem.appendChild(newWeight)
-elList.appendChild(newItem)
-
-
-
+function domgachiqarish(array,node){
+	for(item of array){
+		var newItem = document.createElement("li")
+		var newSpan = document.createElement("span")
+		var newTitle = document.createElement("h2")
+		var newImg = document.createElement("img")
+		var newStrong = document.createElement("strong")
+		var newHeight = document.createElement("p")
+		var newWeight = document.createElement("p")
+		
+		
+		newSpan.textContent = ` ${item.num}`
+		newTitle.textContent = ` ${item.name}`
+		newImg.src = `${item.img}`
+		newStrong.textContent = ` ${item.type}`
+		newHeight.textContent = `${item.height}`
+		newWeight.textContent = `${item.weight}`
+		
+		
+		
+		newItem.setAttribute("class", "box")
+		newSpan.setAttribute("class", "spans")
+		newTitle.setAttribute("class", "titles")
+		newImg.setAttribute("class", "imgs")
+		newStrong.setAttribute("class", "types")
+		newHeight.setAttribute("class", "heights")
+		newWeight.setAttribute("class", "weights")
+		
+		newItem.appendChild(newSpan)
+		newItem.appendChild(newTitle)
+		newItem.appendChild(newImg)
+		newItem.appendChild(newStrong)
+		newItem.appendChild(newHeight)
+		newItem.appendChild(newWeight)
+		node.appendChild(newItem)
+		
+		
+		
+		}
 }
 
+domgachiqarish(pokemons,elList)
 
+const elSelect = document.querySelector(".js-select")
+let result = [];
+elSelect.addEventListener("change", function(){
+result = []
+elList.innerHTML = ' ';
+	let selectVal = elSelect.value
+	pokemons.forEach((pokem) => {
+		if(pokem.type.includes(selectVal)){
+result.push(pokem)
+		}
+	})
+domgachiqarish(result,elList)
+})
 
 
 

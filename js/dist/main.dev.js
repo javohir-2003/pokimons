@@ -3008,33 +3008,69 @@ var pokemons = [{
   weaknesses: ['Bug', 'Ghost', 'Dark']
 }];
 
-for (var _i = 0, _pokemons = pokemons; _i < _pokemons.length; _i++) {
-  item = _pokemons[_i];
-  var newItem = document.createElement("li");
-  var newSpan = document.createElement("span");
-  var newTitle = document.createElement("h2");
-  var newImg = document.createElement("img");
-  var newStrong = document.createElement("strong");
-  var newHeight = document.createElement("p");
-  var newWeight = document.createElement("p");
-  newSpan.textContent = " ".concat(item.num);
-  newTitle.textContent = " ".concat(item.name);
-  newImg.src = "".concat(item.img);
-  newStrong.textContent = " ".concat(item.type);
-  newHeight.textContent = "".concat(item.height);
-  newWeight.textContent = "".concat(item.weight);
-  newItem.setAttribute("class", "box");
-  newSpan.setAttribute("class", "spans");
-  newTitle.setAttribute("class", "titles");
-  newImg.setAttribute("class", "imgs");
-  newStrong.setAttribute("class", "types");
-  newHeight.setAttribute("class", "heights");
-  newWeight.setAttribute("class", "weights");
-  newItem.appendChild(newSpan);
-  newItem.appendChild(newTitle);
-  newItem.appendChild(newImg);
-  newItem.appendChild(newStrong);
-  newItem.appendChild(newHeight);
-  newItem.appendChild(newWeight);
-  elList.appendChild(newItem);
+function domgachiqarish(array, node) {
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = array[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      item = _step.value;
+      var newItem = document.createElement("li");
+      var newSpan = document.createElement("span");
+      var newTitle = document.createElement("h2");
+      var newImg = document.createElement("img");
+      var newStrong = document.createElement("strong");
+      var newHeight = document.createElement("p");
+      var newWeight = document.createElement("p");
+      newSpan.textContent = " ".concat(item.num);
+      newTitle.textContent = " ".concat(item.name);
+      newImg.src = "".concat(item.img);
+      newStrong.textContent = " ".concat(item.type);
+      newHeight.textContent = "".concat(item.height);
+      newWeight.textContent = "".concat(item.weight);
+      newItem.setAttribute("class", "box");
+      newSpan.setAttribute("class", "spans");
+      newTitle.setAttribute("class", "titles");
+      newImg.setAttribute("class", "imgs");
+      newStrong.setAttribute("class", "types");
+      newHeight.setAttribute("class", "heights");
+      newWeight.setAttribute("class", "weights");
+      newItem.appendChild(newSpan);
+      newItem.appendChild(newTitle);
+      newItem.appendChild(newImg);
+      newItem.appendChild(newStrong);
+      newItem.appendChild(newHeight);
+      newItem.appendChild(newWeight);
+      node.appendChild(newItem);
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
 }
+
+domgachiqarish(pokemons, elList);
+var elSelect = document.querySelector(".js-select");
+var result = [];
+elSelect.addEventListener("change", function () {
+  result = [];
+  elList.innerHTML = ' ';
+  var selectVal = elSelect.value;
+  pokemons.forEach(function (pokem) {
+    if (pokem.type.includes(selectVal)) {
+      result.push(pokem);
+    }
+  });
+  domgachiqarish(result, elList);
+});
